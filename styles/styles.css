@@ -10,10 +10,12 @@ li {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 .title {
   font-weight: bolder;
+  font-size: 2.3rem;
 }
 
 .hiddenTxt {
@@ -51,7 +53,6 @@ a {
 }
 
 html {
-  background: coral;
   height: 100%;
   min-width: 100%;
 }
@@ -60,16 +61,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 100%;
+  min-width: 100vw;
   width: 100vw;
   height: 100%;
 }
 
 header {
   height: 600px;
-  width: 100%;
-  outline: 1px solid blue;
-  width: 100%;
   background: url("../img/desktop/image-hero.jpg") center center/cover;
   color: #ffffff;
 }
@@ -85,16 +83,19 @@ header .container nav {
 header .container nav ul {
   display: flex;
 }
-header .container nav ul li {
+header .container nav ul li.nav-item {
   -webkit-margin-start: 20px;
           margin-inline-start: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-block: 10px;
   position: relative;
 }
-header .container nav ul li:hover {
+header .container nav ul li.nav-item:hover {
   cursor: pointer;
 }
-header .container nav ul li:hover::after {
+header .container nav ul li.nav-item:hover::after {
   content: "";
   width: 20px;
   height: 2px;
@@ -103,9 +104,88 @@ header .container nav ul li:hover::after {
   left: 30%;
   bottom: 0;
 }
+header .container nav ul li.menu-wrap .hamburger-container {
+  position: absolute;
+  top: 52px;
+  right: 7vw;
+  width: 30px;
+  height: 30px;
+}
+header .container nav ul li.menu-wrap .hamburger-container img {
+  width: 100%;
+  height: 100%;
+}
+header .container nav ul li.menu-wrap .toggler {
+  position: fixed;
+  top: 52px;
+  right: 7vw;
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  z-index: 40;
+}
+header .container nav ul li.menu-wrap .toggler:hover {
+  cursor: pointer;
+}
+header .container nav ul li.menu-wrap .toggler:checked + .hamburger-menu {
+  visibility: visible;
+}
+header .container nav ul li.menu-wrap .hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  visibility: hidden;
+  padding-inline: 10vw;
+  z-index: 20;
+}
+header .container nav ul li.menu-wrap .hamburger-menu .hamburger-menu_title {
+  -webkit-margin-before: 50px;
+          margin-block-start: 50px;
+  -webkit-margin-after: 60px;
+          margin-block-end: 60px;
+}
+header .container nav ul li.menu-wrap .hamburger-menu .hamburger-menu_title .close-img-container {
+  position: fixed;
+  top: 52px;
+  right: 7vw;
+  width: 30px;
+  height: 30px;
+}
+header .container nav ul li.menu-wrap .hamburger-menu .hamburger-menu_title .close-img-container img {
+  width: 100%;
+  height: 100%;
+}
+header .container nav ul li.menu-wrap .hamburger-menu ul {
+  display: flex;
+  flex-direction: column;
+}
+header .container nav ul li.menu-wrap .hamburger-menu ul li.menu-item {
+  font-weight: 100;
+  font-size: 1.5rem;
+  margin-block: 20px;
+  text-transform: uppercase;
+}
+@media (max-width: 705px) {
+  header .container nav ul li.nav-item {
+    display: none;
+  }
+  header .container nav ul li.menu-wrap.icon {
+    display: block;
+  }
+}
+@media (min-width: 705px) {
+  header .container nav ul li.nav-item {
+    display: block;
+  }
+  header .container nav ul li.menu-wrap.icon {
+    display: none;
+  }
+}
 header .container .hero-txt {
   width: 50vw;
-  outline: 1px solid red;
   max-width: 500px;
   border: 1px solid #ffffff;
   margin-top: 100px;
@@ -113,12 +193,12 @@ header .container .hero-txt {
 }
 @media (max-width: 890px) {
   header .container .hero-txt {
-    width: 70vw;
+    width: 66vw;
   }
 }
-@media (max-width: 635px) {
+@media (max-width: 672px) {
   header .container .hero-txt {
-    width: 80vw;
+    width: 100%;
   }
 }
 
@@ -144,27 +224,64 @@ main section.interactive .interactive-img img {
   height: 100%;
 }
 main section.interactive .interactive-txt {
-  padding-top: 40px;
-  padding-left: 80px;
+  padding-top: 7%;
+  padding-left: 8%;
   transform: translateY(3px);
   position: absolute;
   bottom: 0%;
   right: 0%;
   height: 65%;
   width: 50%;
-  display: flex;
   background-color: #ffffff;
+  display: flex;
   flex-direction: column;
   z-index: 10;
 }
 main section.interactive .interactive-txt h3 {
   margin-top: auto;
   margin-bottom: 20px;
-  width: 90%;
+  width: 100%;
 }
 main section.interactive .interactive-txt p {
   color: grey;
   line-height: 1.5;
+}
+@media (max-width: 1145px) {
+  main section.interactive {
+    height: 400px;
+  }
+}
+@media (max-width: 800px) {
+  main section.interactive {
+    height: 380px;
+  }
+}
+@media (max-width: 705px) {
+  main section.interactive {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  main section.interactive .interactive-img {
+    position: static;
+    width: 100%;
+    height: 50%;
+  }
+  main section.interactive .interactive-txt {
+    position: static;
+    width: 100%;
+    height: 50%;
+    padding: 0;
+    text-align: center;
+  }
+  main section.interactive .interactive-txt h3 {
+    margin-top: 0;
+    font-size: 2.8rem !important;
+  }
+  main section.interactive .interactive-txt p {
+    font-size: 1rem !important;
+  }
 }
 main section.creation .creation-title {
   margin-block: 10px;
@@ -176,8 +293,9 @@ main section.creation .creation-title {
 }
 main section.creation .creation-card-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 200px));
   grid-gap: 30px;
+  justify-content: center;
 }
 main section.creation .creation-card-container .creation-card {
   min-width: 40px;
@@ -200,12 +318,8 @@ main section.creation .creation-card-container .creation-card .creation-card-ove
 main section.creation .creation-card-container .creation-card .creation-card-overlay:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
-main section.creation .creation-card-container .creation-card img {
-  width: 100%;
-  height: 100%;
-}
 main section.creation .creation-card-container .creation-card span {
-  z-index: 20;
+  z-index: 2;
   position: absolute;
   bottom: 40px;
   left: 40px;
@@ -216,6 +330,83 @@ main section.creation .creation-card-container .creation-card span {
 }
 main section.creation .creation-card-container .creation-card span:hover {
   color: #d6d5d5;
+}
+main section.creation .creation-card-container .creation-card:nth-child(1) {
+  background: url("../img/desktop/image-deep-earth.jpg") no-repeat center center/cover;
+}
+main section.creation .creation-card-container .creation-card:nth-child(2) {
+  background: url("../img/desktop/image-night-arcade.jpg") no-repeat center center/cover;
+}
+main section.creation .creation-card-container .creation-card:nth-child(3) {
+  background: url("../img/desktop/image-soccer-team.jpg") no-repeat center center/cover;
+}
+main section.creation .creation-card-container .creation-card:nth-child(4) {
+  background: url("../img/desktop/image-grid.jpg") no-repeat center center/cover;
+}
+main section.creation .creation-card-container .creation-card:nth-child(5) {
+  background: url("../img//desktop/image-from-above.jpg") no-repeat center center/cover;
+}
+main section.creation .creation-card-container .creation-card:nth-child(6) {
+  background: url("../img/desktop/image-pocket-borealis.jpg") no-repeat center center/cover;
+}
+main section.creation .creation-card-container .creation-card:nth-child(7) {
+  background: url("../img/desktop/image-curiosity.jpg") no-repeat center center/cover;
+}
+main section.creation .creation-card-container .creation-card:nth-child(8) {
+  background: url("../img/desktop/image-fisheye.jpg") no-repeat center center/cover;
+}
+main section.creation .all {
+  display: none;
+}
+@media (max-width: 705px) {
+  main {
+    padding-bottom: 60px;
+  }
+  main section.creation .creation-title {
+    margin-block: 15px;
+    padding-bottom: 40px;
+  }
+  main section.creation .creation-title h4 {
+    width: 100%;
+    text-align: center;
+  }
+  main section.creation .creation-title button {
+    display: none;
+  }
+  main section.creation .creation-card-container {
+    grid-template-columns: 1fr;
+  }
+  main section.creation .creation-card-container .creation-card {
+    height: 200px;
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(1) {
+    background: url("../img/mobile/image-deep-earth.jpg");
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(2) {
+    background: url("../img/mobile/image-night-arcade.jpg");
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(3) {
+    background: url("../img/mobile/image-soccer-team.jpg");
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(4) {
+    background: url("../img/mobile/image-grid.jpg");
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(5) {
+    background: url("../img//mobile/image-from-above.jpg");
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(6) {
+    background: url("../img/mobile/image-pocket-borealis.jpg");
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(7) {
+    background: url("../img/mobile/image-curiosity.jpg");
+  }
+  main section.creation .creation-card-container .creation-card:nth-child(8) {
+    background: url("../img/mobile/image-fisheye.jpg");
+  }
+  main section.creation .all {
+    display: block;
+    margin: 40px auto;
+  }
 }
 
 footer {
@@ -263,4 +454,25 @@ footer .footer-body ul li:hover::after {
   position: absolute;
   left: 30%;
   bottom: 0;
+}
+@media (max-width: 705px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+  footer .footer-title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    gap: 20px;
+  }
+  footer .footer-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  footer .footer-body ul li {
+    display: inherit;
+    margin-right: 0;
+  }
 }/*# sourceMappingURL=styles.css.map */

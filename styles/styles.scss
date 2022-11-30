@@ -9,12 +9,16 @@
 $txtColor: #ffffff;
 $hiddenTxtColor: grey;
 $pagePaddingInline: 10vw;
+$checkboxTop: 52px;
+$checkboxRight: 7vw;
+$checkboxWidth: 30px;
+$checkboxHeight: 30px;
 
-// mixins
-@mixin naveFlex {
+// mixin
+@mixin naveFlex($jc, $ai) {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: $jc;
+  align-items: $ai;
 }
 
 @mixin navHover {
@@ -39,11 +43,13 @@ li {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 // utility classes
 .title {
   font-weight: bolder;
+  font-size: 2.3rem;
 }
 
 .hiddenTxt {
@@ -81,7 +87,7 @@ a {
 }
 
 html {
-  background: coral;
+  // background: coral;
   height: 100%;
   min-width: 100%;
 }
@@ -92,17 +98,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // max-width: 100%;
-  min-width: 100%;
+  min-width: 100vw;
   width: 100vw;
   height: 100%;
 }
 
 header {
   height: 600px;
-  width: 100%;
-  outline: 1px solid blue;
-  width: 100%;
   background: url("../img/desktop/image-hero.jpg") center center/cover;
   color: $txtColor;
 
@@ -110,34 +112,126 @@ header {
     padding-block-start: 50px;
 
     nav {
-      @include naveFlex();
-
+      @include naveFlex(space-between, center);
       ul {
         display: flex;
 
-        li {
+        li.nav-item {
           margin-inline-start: 20px;
+          @include naveFlex(space-between, center);
           padding-block: 10px;
           position: relative;
-
           @include navHover();
+        }
+
+        li.menu-wrap {
+          .hamburger-container {
+            position: absolute;
+            top: $checkboxTop;
+            right: $checkboxRight;
+            width: $checkboxWidth;
+            height: $checkboxHeight;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .toggler {
+            position: fixed;
+            top: $checkboxTop;
+            right: $checkboxRight;
+            width: $checkboxWidth;
+            height: $checkboxHeight;
+            opacity: 0;
+            z-index: 40;
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            &:checked + .hamburger-menu {
+              visibility: visible;
+            }
+          }
+
+          .hamburger-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            visibility: hidden;
+            padding-inline: $pagePaddingInline;
+            z-index: 20;
+
+            .hamburger-menu_title {
+              margin-block-start: 50px;
+              margin-block-end: 60px;
+
+              .close-img-container {
+                position: fixed;
+                top: $checkboxTop;
+                right: $checkboxRight;
+                width: $checkboxWidth;
+                height: $checkboxHeight;
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+
+            ul {
+              display: flex;
+              flex-direction: column;
+
+              li.menu-item {
+                font-weight: 100;
+                font-size: 1.5rem;
+                margin-block: 20px;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+
+        @media (max-width: 705px) {
+          li.nav-item {
+            display: none;
+          }
+
+          li.menu-wrap.icon {
+            display: block;
+          }
+        }
+        @media (min-width: 705px) {
+          li.nav-item {
+            display: block;
+          }
+
+          li.menu-wrap.icon {
+            display: none;
+          }
         }
       }
     }
 
     .hero-txt {
       width: 50vw;
-      outline: 1px solid red;
       max-width: 500px;
       border: 1px solid $txtColor;
       margin-top: 100px;
       padding: 15px 25px;
 
       @media (max-width: 890px) {
-        width: 70vw;
+        width: 66vw;
       }
-      @media (max-width: 635px) {
-        width: 80vw;
+      @media (max-width: 672px) {
+        width: 100%;
       }
     }
   }
@@ -151,13 +245,11 @@ main {
 
   section.interactive {
     position: relative;
-    // outline: 1px solid blue;
     height: 480px;
 
     .interactive-img {
       width: 65%;
       height: 100%;
-      //   outline: 1px solid red;
       position: absolute;
       left: 0%;
       bottom: 0%;
@@ -169,25 +261,23 @@ main {
     }
 
     .interactive-txt {
-      padding-top: 40px;
-      padding-left: 80px;
+      padding-top: 7%;
+      padding-left: 8%;
       transform: translateY(3px);
       position: absolute;
       bottom: 0%;
       right: 0%;
       height: 65%;
       width: 50%;
-      display: flex;
       background-color: $txtColor;
+      display: flex;
       flex-direction: column;
-      //   outline: 1px solid green;
-      //   align-self: baseline;
       z-index: 10;
 
       h3 {
         margin-top: auto;
         margin-bottom: 20px;
-        width: 90%;
+        width: 100%;
       }
 
       p {
@@ -195,20 +285,59 @@ main {
         line-height: 1.5;
       }
     }
+
+    @media (max-width: 1145px) {
+      height: 400px;
+    }
+
+    @media (max-width: 800px) {
+      height: 380px;
+    }
+
+    @media (max-width: 705px) {
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .interactive-img {
+        position: static;
+        width: 100%;
+        height: 50%;
+      }
+
+      .interactive-txt {
+        position: static;
+        width: 100%;
+        height: 50%;
+        padding: 0;
+        text-align: center;
+
+        h3 {
+          margin-top: 0;
+          font-size: 2.8rem !important;
+        }
+
+        p {
+          font-size: 1rem !important;
+        }
+      }
+    }
   }
 
   section.creation {
     .creation-title {
       margin-block: 10px;
-      @include naveFlex();
+      @include naveFlex(space-between, center);
       margin-top: 180px;
       padding-bottom: 80px;
     }
 
     .creation-card-container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(12rem, 200px));
       grid-gap: 30px;
+      justify-content: center;
 
       .creation-card {
         min-width: 40px;
@@ -234,13 +363,8 @@ main {
           }
         }
 
-        img {
-          width: 100%;
-          height: 100%;
-        }
-
         span {
-          z-index: 20;
+          z-index: 2;
           position: absolute;
           bottom: 40px;
           left: 40px;
@@ -254,7 +378,101 @@ main {
           }
         }
       }
+
+      .creation-card:nth-child(1) {
+        background: url("../img/desktop/image-deep-earth.jpg") no-repeat center
+          center/cover;
+      }
+      .creation-card:nth-child(2) {
+        background: url("../img/desktop/image-night-arcade.jpg") no-repeat
+          center center/cover;
+      }
+      .creation-card:nth-child(3) {
+        background: url("../img/desktop/image-soccer-team.jpg") no-repeat center
+          center/cover;
+      }
+      .creation-card:nth-child(4) {
+        background: url("../img/desktop/image-grid.jpg") no-repeat center
+          center/cover;
+      }
+      .creation-card:nth-child(5) {
+        background: url("../img//desktop/image-from-above.jpg") no-repeat center
+          center/cover;
+      }
+      .creation-card:nth-child(6) {
+        background: url("../img/desktop/image-pocket-borealis.jpg") no-repeat
+          center center/cover;
+      }
+      .creation-card:nth-child(7) {
+        background: url("../img/desktop/image-curiosity.jpg") no-repeat center
+          center/cover;
+      }
+      .creation-card:nth-child(8) {
+        background: url("../img/desktop/image-fisheye.jpg") no-repeat center
+          center/cover;
+      }
     }
+
+    .all {
+      display: none;
+    }
+  }
+
+  @media (max-width: 705px) {
+    section.creation {
+      .creation-title {
+        margin-block: 15px;
+        padding-bottom: 40px;
+
+        h4 {
+          width: 100%;
+          text-align: center;
+        }
+
+        button {
+          display: none;
+        }
+      }
+
+      .creation-card-container {
+        grid-template-columns: 1fr;
+
+        .creation-card {
+          height: 200px;
+        }
+        .creation-card:nth-child(1) {
+          background: url("../img/mobile/image-deep-earth.jpg");
+        }
+        .creation-card:nth-child(2) {
+          background: url("../img/mobile/image-night-arcade.jpg");
+        }
+        .creation-card:nth-child(3) {
+          background: url("../img/mobile/image-soccer-team.jpg");
+        }
+        .creation-card:nth-child(4) {
+          background: url("../img/mobile/image-grid.jpg");
+        }
+        .creation-card:nth-child(5) {
+          background: url("../img//mobile/image-from-above.jpg");
+        }
+        .creation-card:nth-child(6) {
+          background: url("../img/mobile/image-pocket-borealis.jpg");
+        }
+        .creation-card:nth-child(7) {
+          background: url("../img/mobile/image-curiosity.jpg");
+        }
+        .creation-card:nth-child(8) {
+          background: url("../img/mobile/image-fisheye.jpg");
+        }
+      }
+
+      .all {
+        display: block;
+        margin: 40px auto;
+      }
+    }
+
+    padding-bottom: 60px;
   }
 }
 
@@ -266,7 +484,7 @@ footer {
   color: $txtColor;
 
   .footer-title {
-    @include naveFlex();
+    @include naveFlex(space-between, center);
     margin-bottom: 20px;
 
     ul li {
@@ -283,7 +501,7 @@ footer {
   }
 
   .footer-body {
-    @include naveFlex();
+    @include naveFlex(space-between, center);
 
     ul li {
       display: inline-block;
@@ -291,6 +509,29 @@ footer {
       padding-block: 10px;
       position: relative;
       @include navHover();
+    }
+  }
+
+  @media (max-width: 705px) {
+    display: flex;
+    flex-direction: column;
+
+    .footer-title {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0;
+      gap: 20px;
+    }
+
+    .footer-body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      ul li {
+        display: inherit;
+        margin-right: 0;
+      }
     }
   }
 }

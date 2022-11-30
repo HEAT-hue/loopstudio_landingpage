@@ -17,9 +17,48 @@ main section.interactive .interactive-txt h3 {
   letter-spacing: 3px;
   word-spacing: 5px;
 }
+@media (max-width: 1134px) {
+  main section.interactive .interactive-txt h3 {
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 915px) {
+  main section.interactive .interactive-txt h3 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 850px) {
+  main section.interactive .interactive-txt h3 {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 800px) {
+  main section.interactive .interactive-txt h3 {
+    font-size: 1.7rem;
+  }
+}
+@media (max-width: 752px) {
+  main section.interactive .interactive-txt h3 {
+    font-size: 1.6rem;
+  }
+}
 main section.interactive .interactive-txt p {
   font-size: 0.8rem;
   font-weight: 500;
+}
+@media (max-width: 1134px) {
+  main section.interactive .interactive-txt p {
+    font-size: 2.2rem;
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 705px) {
+  main section.interactive .interactive-txt h3 {
+    font-size: 2.8rem;
+  }
+  main section.interactive .interactive-txt p {
+    font-size: 1rem;
+  }
 }
 main section.creation .creation-title h4 {
   font-size: 3rem;
