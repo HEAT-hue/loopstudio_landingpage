@@ -1,0 +1,54 @@
+$txtPryFont: 2rem;
+$txtSecFont: 0.8rem;
+
+header {
+  .title {
+    font-size: $txtPryFont;
+  }
+  ul li {
+    font-size: $txtSecFont;
+    font-weight: 600;
+  }
+  .hero-txt {
+    font-size: 3.8rem;
+    font-weight: 300;
+  }
+}
+
+main {
+  section.interactive {
+    .interactive-txt {
+      h3 {
+        font-size: $txtPryFont + 0.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        word-spacing: 5px;
+      }
+
+      p {
+        font-size: $txtSecFont;
+        font-weight: 500;
+      }
+    }
+  }
+
+  section.creation {
+    .creation-title {
+      h4 {
+        font-size: 3rem;
+        font-weight: 200;
+      }
+    }
+  }
+}
+
+footer {
+  .footer-title {
+    font-size: 1.5rem;
+  }
+
+  .footer-body {
+    font-size: $txtSecFont;
+  }
+}

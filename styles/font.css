@@ -1,0 +1,34 @@
+header .title {
+  font-size: 2rem;
+}
+header ul li {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+header .hero-txt {
+  font-size: 3.8rem;
+  font-weight: 300;
+}
+
+main section.interactive .interactive-txt h3 {
+  font-size: 2.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  word-spacing: 5px;
+}
+main section.interactive .interactive-txt p {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+main section.creation .creation-title h4 {
+  font-size: 3rem;
+  font-weight: 200;
+}
+
+footer .footer-title {
+  font-size: 1.5rem;
+}
+footer .footer-body {
+  font-size: 0.8rem;
+}/*# sourceMappingURL=font.css.map */
