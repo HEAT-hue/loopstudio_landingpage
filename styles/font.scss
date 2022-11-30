@@ -50,5 +50,10 @@ footer {
 
   .footer-body {
     font-size: $txtSecFont;
+
+    ul li {
+    //   color: $txtPryFont;
+      font-weight: 600;
+    }
   }
 }
