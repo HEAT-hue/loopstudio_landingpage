@@ -14,13 +14,14 @@ $checkboxRight: 7vw;
 $checkboxWidth: 30px;
 $checkboxHeight: 30px;
 
-// mixin
+// flexbox mixin
 @mixin naveFlex($jc, $ai) {
   display: flex;
   justify-content: $jc;
   align-items: $ai;
 }
 
+// nav hover state mixin
 @mixin navHover {
   &:hover {
     cursor: pointer;
@@ -237,6 +238,7 @@ header {
   }
 }
 
+// main section
 main {
   padding-inline: $pagePaddingInline;
   padding-block: 120px;
